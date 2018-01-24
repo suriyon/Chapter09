@@ -18,6 +18,7 @@ public class StudentCMS extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;
+	private AddStudentJFrame addStudentJFrame;
 
 	/**
 	 * Launch the application.
@@ -57,6 +58,15 @@ public class StudentCMS extends JFrame {
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		
 		JButton toolBarAddStudent = new JButton("Add Student");
+		toolBarAddStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(addStudentJFrame == null || addStudentJFrame.isClosed()) {
+					addStudentJFrame = new AddStudentJFrame();
+					addStudentJFrame.setVisible(true);
+					desktopPane.add(addStudentJFrame);
+				}
+			}
+		});
 		toolBar.add(toolBarAddStudent);
 		
 		JButton toolBarShowStudent = new JButton("Show Student");

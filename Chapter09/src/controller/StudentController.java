@@ -39,4 +39,41 @@ public class StudentController {
 		}
 		return students;
 	}
+	
+	public boolean insert(Student student) {
+		boolean result = false;
+		String sql = "insert into student(id, name, branch, age) values(?, ?, ?, ?)";
+		try {
+			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
+			
+			ps.setString(1, student.getId());
+			ps.setString(2, student.getName());
+			ps.setString(3, student.getBranch());
+			ps.setInt(4, student.getAge());
+			
+			int row = ps.executeUpdate();
+			
+			if(row > 0) {
+				result = true;
+			}
+			
+			ps.close();
+			MySQLHelper.closeDB();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
