@@ -19,6 +19,9 @@ public class StudentCMS extends JFrame {
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;
 	private AddStudentJFrame addStudentJFrame;
+	private ShowStudentJFrame showStudentJFrame;
+	private SearchStudentJFrame searchStudentJFrame;
+	private UpdateStudentJFrame updateStudentJFrame;
 
 	/**
 	 * Launch the application.
@@ -70,9 +73,39 @@ public class StudentCMS extends JFrame {
 		toolBar.add(toolBarAddStudent);
 		
 		JButton toolBarShowStudent = new JButton("Show Student");
+		toolBarShowStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(showStudentJFrame == null || showStudentJFrame.isClosed()) {
+					showStudentJFrame = new ShowStudentJFrame();
+					showStudentJFrame.setVisible(true);
+					desktopPane.add(showStudentJFrame);
+				}
+			}
+		});
 		toolBar.add(toolBarShowStudent);
 		
+		JButton toolBarSearchStudent = new JButton("Search Student");
+		toolBarSearchStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(searchStudentJFrame == null || searchStudentJFrame.isClosed()) {
+					searchStudentJFrame = new SearchStudentJFrame();
+					searchStudentJFrame.setVisible(true);
+					desktopPane.add(searchStudentJFrame);
+				}
+			}
+		});
+		toolBar.add(toolBarSearchStudent);
+		
 		JButton toolBarEditStudent = new JButton("Edit Student");
+		toolBarEditStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(updateStudentJFrame == null || updateStudentJFrame.isClosed()) {
+					updateStudentJFrame = new UpdateStudentJFrame();
+					updateStudentJFrame.setVisible(true);
+					desktopPane.add(updateStudentJFrame);
+				}
+			}
+		});
 		toolBar.add(toolBarEditStudent);
 		
 		JButton toolBarExit = new JButton("Exit");

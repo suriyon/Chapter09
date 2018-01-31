@@ -75,16 +75,37 @@ public class StudentController {
 			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				String id = rs.getString("id");
-				String name = rs.getString("name");
-				String branch = rs.getString("branch");
-				int age = rs.getInt("age");
+				Vector student = new Vector<>();
+				student.add(rs.getString(1));
+				student.add(rs.getString(2));
+				student.add(rs.getString(3));
+				student.add(rs.getString(4));
 				
-				Student student = new Student();
-				student.setId(id);
-				student.setName(name);
-				student.setBranch(branch);
-				student.setAge(age);
+				students.add(student);
+			}
+			rs.close();
+			ps.close();
+			MySQLHelper.closeDB();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return students;
+	}
+	
+	public Vector showStudentByName(String name){
+		Vector students = new Vector();
+		String sql = "select * from student where name like ?";
+		try {
+			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
+			ps.setString(1, "%" + name + "%");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Vector student = new Vector<>();
+				student.add(rs.getString(1));
+				student.add(rs.getString(2));
+				student.add(rs.getString(3));
+				student.add(rs.getString(4));
 				
 				students.add(student);
 			}
