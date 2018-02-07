@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class DeleteStudentJFrame extends JInternalFrame {
 	private JScrollPane scrollPane;
@@ -58,6 +59,7 @@ public class DeleteStudentJFrame extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public DeleteStudentJFrame() {
+		setFrameIcon(new ImageIcon(DeleteStudentJFrame.class.getResource("/images32/delete.png")));
 		setTitle("Delete Students");
 		setClosable(true);
 		setBounds(100, 100, 683, 361);
@@ -88,7 +90,8 @@ public class DeleteStudentJFrame extends JInternalFrame {
 		panel_1.add(textSearch);
 		textSearch.setColumns(10);
 		
-		JButton btnSearch = new JButton("ค้นหา");
+		JButton btnSearch = new JButton("");
+		btnSearch.setIcon(new ImageIcon(DeleteStudentJFrame.class.getResource("/images16/binocular.png")));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -97,10 +100,11 @@ public class DeleteStudentJFrame extends JInternalFrame {
 				
 			}
 		});
-		btnSearch.setBounds(424, 28, 89, 23);
+		btnSearch.setBounds(424, 20, 50, 30);
 		panel_1.add(btnSearch);
 		
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.setIcon(new ImageIcon(DeleteStudentJFrame.class.getResource("/images32/delete.png")));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				StudentController controller = new StudentController();
@@ -115,7 +119,7 @@ public class DeleteStudentJFrame extends JInternalFrame {
 				addStudentToTable();
 			}
 		});
-		btnDelete.setBounds(276, 274, 89, 23);
+		btnDelete.setBounds(276, 274, 128, 42);
 		getContentPane().add(btnDelete);
 		
 		prepareTable();

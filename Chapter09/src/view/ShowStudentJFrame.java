@@ -13,6 +13,7 @@ import controller.StudentController;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ImageIcon;
 
 public class ShowStudentJFrame extends JInternalFrame {
 	private JScrollPane scrollPane;
@@ -45,6 +46,7 @@ public class ShowStudentJFrame extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ShowStudentJFrame() {
+		setFrameIcon(new ImageIcon(ShowStudentJFrame.class.getResource("/images32/list.png")));
 		setTitle("Show All Students");
 		setClosable(true);
 		setBounds(100, 100, 683, 453);

@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class AddStudentJFrame extends JInternalFrame {
 	private JTextField textId;
@@ -48,6 +49,7 @@ public class AddStudentJFrame extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AddStudentJFrame() {
+		setFrameIcon(new ImageIcon(AddStudentJFrame.class.getResource("/images32/add.png")));
 		setTitle("Add Student JFrame");
 		setClosable(true);
 		setBounds(100, 100, 478, 324);
@@ -96,6 +98,7 @@ public class AddStudentJFrame extends JInternalFrame {
 		textAge.setColumns(10);
 		
 		JButton btnAdd = new JButton("เพิ่มข้อมูล");
+		btnAdd.setIcon(new ImageIcon(AddStudentJFrame.class.getResource("/images32/add.png")));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textId.getText().equals("") || 
@@ -126,7 +129,7 @@ public class AddStudentJFrame extends JInternalFrame {
 				
 			}
 		});
-		btnAdd.setBounds(180, 222, 89, 23);
+		btnAdd.setBounds(161, 215, 128, 42);
 		getContentPane().add(btnAdd);
 
 	}

@@ -13,6 +13,8 @@ import javax.swing.JDesktopPane;
 import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class StudentCMS extends JFrame {
 
@@ -50,9 +52,10 @@ public class StudentCMS extends JFrame {
 	 */
 	public StudentCMS() {
 		setExtendedState(Frame.MAXIMIZED_BOTH);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(StudentCMS.class.getResource("/images32/student.png")));
 		setTitle("Student CMS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 324);
+		setBounds(100, 100, 758, 324);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -62,6 +65,7 @@ public class StudentCMS extends JFrame {
 		contentPane.add(toolBar, BorderLayout.NORTH);
 		
 		JButton toolBarAddStudent = new JButton("Add Student");
+		toolBarAddStudent.setIcon(new ImageIcon(StudentCMS.class.getResource("/images32/add.png")));
 		toolBarAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(addStudentJFrame == null || addStudentJFrame.isClosed()) {
@@ -74,6 +78,7 @@ public class StudentCMS extends JFrame {
 		toolBar.add(toolBarAddStudent);
 		
 		JButton toolBarShowStudent = new JButton("Show Student");
+		toolBarShowStudent.setIcon(new ImageIcon(StudentCMS.class.getResource("/images32/list.png")));
 		toolBarShowStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(showStudentJFrame == null || showStudentJFrame.isClosed()) {
@@ -86,6 +91,7 @@ public class StudentCMS extends JFrame {
 		toolBar.add(toolBarShowStudent);
 		
 		JButton toolBarSearchStudent = new JButton("Search Student");
+		toolBarSearchStudent.setIcon(new ImageIcon(StudentCMS.class.getResource("/images32/magnify.png")));
 		toolBarSearchStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(searchStudentJFrame == null || searchStudentJFrame.isClosed()) {
@@ -98,6 +104,7 @@ public class StudentCMS extends JFrame {
 		toolBar.add(toolBarSearchStudent);
 		
 		JButton toolBarEditStudent = new JButton("Edit Student");
+		toolBarEditStudent.setIcon(new ImageIcon(StudentCMS.class.getResource("/images32/update.png")));
 		toolBarEditStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(updateStudentJFrame == null || updateStudentJFrame.isClosed()) {
@@ -110,6 +117,7 @@ public class StudentCMS extends JFrame {
 		toolBar.add(toolBarEditStudent);
 		
 		JButton toolBarExit = new JButton("Exit");
+		toolBarExit.setIcon(new ImageIcon(StudentCMS.class.getResource("/images32/exit.png")));
 		toolBarExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -117,6 +125,7 @@ public class StudentCMS extends JFrame {
 		});
 		
 		JButton toolBarDeleteStudent = new JButton("Delete Student");
+		toolBarDeleteStudent.setIcon(new ImageIcon(StudentCMS.class.getResource("/images32/delete.png")));
 		toolBarDeleteStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(deleteStudentJFrame == null || deleteStudentJFrame.isClosed()) {

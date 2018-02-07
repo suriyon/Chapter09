@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class SearchStudentJFrame extends JInternalFrame {
 	private JScrollPane scrollPane;
@@ -53,6 +54,7 @@ public class SearchStudentJFrame extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public SearchStudentJFrame() {
+		setFrameIcon(new ImageIcon(SearchStudentJFrame.class.getResource("/images32/list.png")));
 		setTitle("Show All Students");
 		setClosable(true);
 		setBounds(100, 100, 683, 453);
@@ -83,7 +85,8 @@ public class SearchStudentJFrame extends JInternalFrame {
 		panel_1.add(textName);
 		textName.setColumns(10);
 		
-		JButton btnSearch = new JButton("ค้นหา");
+		JButton btnSearch = new JButton("");
+		btnSearch.setIcon(new ImageIcon(SearchStudentJFrame.class.getResource("/images16/binocular.png")));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -92,7 +95,7 @@ public class SearchStudentJFrame extends JInternalFrame {
 				
 			}
 		});
-		btnSearch.setBounds(424, 28, 89, 23);
+		btnSearch.setBounds(424, 20, 50, 30);
 		panel_1.add(btnSearch);
 		
 		prepareTable();

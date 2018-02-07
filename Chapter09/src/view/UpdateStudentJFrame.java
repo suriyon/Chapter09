@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class UpdateStudentJFrame extends JInternalFrame {
 	private JScrollPane scrollPane;
@@ -66,6 +67,7 @@ public class UpdateStudentJFrame extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public UpdateStudentJFrame() {
+		setFrameIcon(new ImageIcon(UpdateStudentJFrame.class.getResource("/images32/list.png")));
 		setTitle("Show All Students");
 		setClosable(true);
 		setBounds(100, 100, 683, 453);
@@ -96,7 +98,8 @@ public class UpdateStudentJFrame extends JInternalFrame {
 		panel_1.add(textSearch);
 		textSearch.setColumns(10);
 		
-		JButton btnSearch = new JButton("ค้นหา");
+		JButton btnSearch = new JButton("");
+		btnSearch.setIcon(new ImageIcon(UpdateStudentJFrame.class.getResource("/images16/binocular.png")));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -105,7 +108,7 @@ public class UpdateStudentJFrame extends JInternalFrame {
 				
 			}
 		});
-		btnSearch.setBounds(424, 28, 89, 23);
+		btnSearch.setBounds(424, 20, 50, 30);
 		panel_1.add(btnSearch);
 		
 		panel_2 = new JPanel();
@@ -152,6 +155,7 @@ public class UpdateStudentJFrame extends JInternalFrame {
 		textAge.setColumns(10);
 		
 		btnUpdate = new JButton("Update");
+		btnUpdate.setIcon(new ImageIcon(UpdateStudentJFrame.class.getResource("/images32/update.png")));
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(textName.getText().equals("") || 
@@ -180,7 +184,7 @@ public class UpdateStudentJFrame extends JInternalFrame {
 				}
 			}
 		});
-		btnUpdate.setBounds(271, 103, 89, 23);
+		btnUpdate.setBounds(260, 97, 121, 41);
 		panel_2.add(btnUpdate);
 		
 		prepareTable();
