@@ -207,7 +207,13 @@ public class UpdateStudentJFrame extends JInternalFrame {
 		model.addColumn("สาขา");
 		model.addColumn("อายุ");
 		
-		studentTable = new JTable(model);
+		studentTable = new JTable(model) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		};
 		studentTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -224,6 +230,8 @@ public class UpdateStudentJFrame extends JInternalFrame {
 		studentTable.getColumnModel().getColumn(1).setPreferredWidth(200);
 		studentTable.getColumnModel().getColumn(2).setPreferredWidth(250);
 		studentTable.getColumnModel().getColumn(3).setPreferredWidth(120);
+		
+		studentTable.getTableHeader().setReorderingAllowed(false);
 		
 		studentTable.setFillsViewportHeight(true);
 		

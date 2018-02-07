@@ -101,6 +101,8 @@ public class ShowStudentJFrame extends JInternalFrame {
 		studentTable.getColumnModel().getColumn(2).setPreferredWidth(250);
 		studentTable.getColumnModel().getColumn(3).setPreferredWidth(120);
 		
+		studentTable.getTableHeader().setReorderingAllowed(false);
+		
 		studentTable.setFillsViewportHeight(true);
 		
 		scrollPane.add(studentTable);

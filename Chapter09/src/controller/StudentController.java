@@ -120,10 +120,27 @@ public class StudentController {
 	}
 	
 	
-	
-	
-	
-	
-	
+	public boolean update(Student student) {
+		boolean result = false;
+		String sql = "update student set name = ?, branch = ?, age = ? where id = ?";
+		try {
+			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
+			ps.setString(1, student.getName());
+			ps.setString(2, student.getBranch());
+			ps.setInt(3, student.getAge());
+			ps.setString(4, student.getId());
+			
+			int row = ps.executeUpdate();
+			if(row > 0) {
+				result = true;
+			}
+			ps.close();
+			MySQLHelper.closeDB();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;		
+	}
 	
 }

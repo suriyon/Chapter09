@@ -148,13 +148,21 @@ public class SearchStudentJFrame extends JInternalFrame {
 		model.addColumn("สาขา");
 		model.addColumn("อายุ");
 		
-		studentTable = new JTable(model);
+		studentTable = new JTable(model) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		};
 		studentTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		studentTable.getColumnModel().getColumn(0).setPreferredWidth(150);
 		studentTable.getColumnModel().getColumn(1).setPreferredWidth(200);
 		studentTable.getColumnModel().getColumn(2).setPreferredWidth(250);
 		studentTable.getColumnModel().getColumn(3).setPreferredWidth(120);
+		
+		studentTable.getTableHeader().setReorderingAllowed(false);
 		
 		studentTable.setFillsViewportHeight(true);
 		
