@@ -23,23 +23,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class UpdateStudentJFrame extends JInternalFrame {
+public class DeleteStudentJFrame extends JInternalFrame {
 	private JScrollPane scrollPane;
 	
 	private JTable studentTable;
 	private DefaultTableModel model;
 	private JPanel panel_1;
 	private JTextField textSearch;
-	private JPanel panel_2;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JTextField textId;
-	private JTextField textName;
-	private JTextField textBranch;
-	private JTextField textAge;
-	private JButton btnUpdate;
+	
+	private String id;
 
 	/**
 	 * Launch the application.
@@ -53,7 +45,7 @@ public class UpdateStudentJFrame extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UpdateStudentJFrame frame = new UpdateStudentJFrame();
+					DeleteStudentJFrame frame = new DeleteStudentJFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,10 +57,10 @@ public class UpdateStudentJFrame extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateStudentJFrame() {
-		setTitle("Show All Students");
+	public DeleteStudentJFrame() {
+		setTitle("Delete Students");
 		setClosable(true);
-		setBounds(100, 100, 683, 453);
+		setBounds(100, 100, 683, 361);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -108,94 +100,30 @@ public class UpdateStudentJFrame extends JInternalFrame {
 		btnSearch.setBounds(424, 28, 89, 23);
 		panel_1.add(btnSearch);
 		
-		panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Edit Student", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(10, 263, 647, 149);
-		getContentPane().add(panel_2);
-		panel_2.setLayout(null);
-		
-		lblNewLabel_1 = new JLabel("รหัสนักศึกษา");
-		lblNewLabel_1.setBounds(10, 28, 86, 14);
-		panel_2.add(lblNewLabel_1);
-		
-		lblNewLabel_2 = new JLabel("ชื่อ-นามสกุล");
-		lblNewLabel_2.setBounds(130, 28, 86, 14);
-		panel_2.add(lblNewLabel_2);
-		
-		lblNewLabel_3 = new JLabel("สาขาวิชา");
-		lblNewLabel_3.setBounds(315, 28, 96, 14);
-		panel_2.add(lblNewLabel_3);
-		
-		lblNewLabel_4 = new JLabel("อายุ");
-		lblNewLabel_4.setBounds(537, 28, 46, 14);
-		panel_2.add(lblNewLabel_4);
-		
-		textId = new JTextField();
-		textId.setEnabled(false);
-		textId.setBounds(10, 53, 110, 20);
-		panel_2.add(textId);
-		textId.setColumns(10);
-		
-		textName = new JTextField();
-		textName.setBounds(130, 53, 175, 20);
-		panel_2.add(textName);
-		textName.setColumns(10);
-		
-		textBranch = new JTextField();
-		textBranch.setBounds(315, 53, 213, 20);
-		panel_2.add(textBranch);
-		textBranch.setColumns(10);
-		
-		textAge = new JTextField();
-		textAge.setBounds(537, 53, 86, 20);
-		panel_2.add(textAge);
-		textAge.setColumns(10);
-		
-		btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textName.getText().equals("") || 
-						textBranch.getText().equals("") || 
-						textAge.getText().equals("") || 
-						textId.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "กรุณากรอกข้อมูลให้ครบก่อน");
-				} else {
-					String id = textId.getText();
-					String name = textName.getText();
-					String branch = textBranch.getText();
-					int age = Integer.parseInt(textAge.getText());
-					
-					Student student = new Student(id, name, branch, age);
-					
-					StudentController controller = new StudentController();
-					boolean result = controller.update(student);
-					
-					if(result) {
-						JOptionPane.showMessageDialog(null, "ปรับปรุงข้อมูลสำเร็จ");
-					}else {
-						JOptionPane.showMessageDialog(null, "เกิดข้อผิดพลาดในการปรับปรุงข้อมูล");
-					}
-					clearText();
-					addStudentToTable();
+				StudentController controller = new StudentController();
+				boolean result = controller.delete(id);
+				
+				if(result) {
+					JOptionPane.showMessageDialog(null, "ลบข้อมูลสำเร็จ");
+				}else {
+					JOptionPane.showMessageDialog(null, "เกิดข้อผิดพลาดในการลบข้อมูล");
 				}
+				
+				addStudentToTable();
 			}
 		});
-		btnUpdate.setBounds(271, 103, 89, 23);
-		panel_2.add(btnUpdate);
+		btnDelete.setBounds(276, 274, 89, 23);
+		getContentPane().add(btnDelete);
 		
 		prepareTable();
 		addStudentToTable();
 
 	}
 
-	protected void clearText() {
-		// TODO Auto-generated method stub
-		textId.setText("");
-		textBranch.setText("");
-		textName.setText("");
-		textSearch.setText("");
-		textAge.setText("");
-	}
+	
 
 	protected void addStudentToTable(String name) {
 		Vector students = new Vector<>();
@@ -256,10 +184,7 @@ public class UpdateStudentJFrame extends JInternalFrame {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				int row = studentTable.getSelectedRow();
-				textId.setText(model.getValueAt(row, 0).toString());
-				textName.setText(model.getValueAt(row, 1).toString());
-				textBranch.setText(model.getValueAt(row, 2).toString());
-				textAge.setText(model.getValueAt(row, 3).toString());
+				id = model.getValueAt(row, 0).toString();
 			}
 		});
 		studentTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

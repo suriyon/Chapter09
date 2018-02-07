@@ -143,4 +143,24 @@ public class StudentController {
 		return result;		
 	}
 	
+	public boolean delete(String id) {
+		boolean result = false;
+		String sql = "delete from student where id = ?";
+		try {
+			PreparedStatement ps = MySQLHelper.openDB().prepareStatement(sql);
+			ps.setString(1, id);
+						
+			int row = ps.executeUpdate();
+			if(row > 0) {
+				result = true;
+			}
+			ps.close();
+			MySQLHelper.closeDB();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;		
+	}
+	
 }

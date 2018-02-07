@@ -22,6 +22,7 @@ public class StudentCMS extends JFrame {
 	private ShowStudentJFrame showStudentJFrame;
 	private SearchStudentJFrame searchStudentJFrame;
 	private UpdateStudentJFrame updateStudentJFrame;
+	private DeleteStudentJFrame deleteStudentJFrame;
 
 	/**
 	 * Launch the application.
@@ -114,6 +115,18 @@ public class StudentCMS extends JFrame {
 				System.exit(0);
 			}
 		});
+		
+		JButton toolBarDeleteStudent = new JButton("Delete Student");
+		toolBarDeleteStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(deleteStudentJFrame == null || deleteStudentJFrame.isClosed()) {
+					deleteStudentJFrame = new DeleteStudentJFrame();
+					deleteStudentJFrame.setVisible(true);
+					desktopPane.add(deleteStudentJFrame);
+				}		
+			}
+		});
+		toolBar.add(toolBarDeleteStudent);
 		toolBar.add(toolBarExit);
 		
 		desktopPane = new JDesktopPane();
