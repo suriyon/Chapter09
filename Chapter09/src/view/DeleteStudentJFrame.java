@@ -32,7 +32,7 @@ public class DeleteStudentJFrame extends JInternalFrame {
 	private JPanel panel_1;
 	private JTextField textSearch;
 	
-	private String id;
+	private String id = "";
 
 	/**
 	 * Launch the application.
@@ -107,16 +107,27 @@ public class DeleteStudentJFrame extends JInternalFrame {
 		btnDelete.setIcon(new ImageIcon(DeleteStudentJFrame.class.getResource("/images32/delete.png")));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				StudentController controller = new StudentController();
-				boolean result = controller.delete(id);
-				
-				if(result) {
-					JOptionPane.showMessageDialog(null, "ลบข้อมูลสำเร็จ");
-				}else {
-					JOptionPane.showMessageDialog(null, "เกิดข้อผิดพลาดในการลบข้อมูล");
+				System.out.println("id : " + id.length());
+				if(id.length() == 0) {
+					JOptionPane.showMessageDialog(null, "กรุณาเลือกนักศึกษาที่ต้องการลบก่อนกดปุ่ม Delete");
+					return;
 				}
-				
-				addStudentToTable();
+				int answer = JOptionPane.showConfirmDialog(null, "ต้องการลบข้อมูลจริงหรือไม่?", "ยืนยันการลบข้อมูล", JOptionPane.YES_NO_OPTION);
+				if(answer == JOptionPane.YES_OPTION) {										
+					StudentController controller = new StudentController();
+					boolean result = controller.delete(id);
+					
+					if(result) {
+						JOptionPane.showMessageDialog(null, "ลบข้อมูลสำเร็จ");
+					}else {
+						JOptionPane.showMessageDialog(null, "เกิดข้อผิดพลาดในการลบข้อมูล");
+					}
+					
+					addStudentToTable();
+				}else {
+					studentTable.clearSelection();
+					id = "";
+				}				
 			}
 		});
 		btnDelete.setBounds(276, 274, 128, 42);
